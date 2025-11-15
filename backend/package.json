@@ -1,0 +1,19 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "scripts": "node index.js"
+  },
+  "keywords": [],
+  "author": "vaibhav",
+  "license": "ISC",
+  "description": "TechDome-Community",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "http": "^0.0.1-security",
+    "mongoose": "^8.19.4"
+  }
+}
