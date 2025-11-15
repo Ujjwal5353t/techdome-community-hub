@@ -8,6 +8,8 @@ import GridBackground from "@/components/GridBackground";
 import Footer from "@/components/Footer";
 import { useToast } from "@/hooks/use-toast";
 
+const BACKEND_URL = "http://localhost:8080";
+
 const Contact = () => {
   const { toast } = useToast();
   const [formData, setFormData] = useState({
@@ -16,8 +18,9 @@ const Contact = () => {
     subject: "",
     message: "",
   });
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Basic validation
@@ -30,19 +33,46 @@ const Contact = () => {
       return;
     }
 
-    // Here you would typically send the form data to a backend
-    toast({
-      title: "Message Sent!",
-      description: "We'll get back to you as soon as possible.",
-    });
+    setIsLoading(true);
 
-    // Reset form
-    setFormData({
-      name: "",
-      email: "",
-      subject: "",
-      message: "",
-    });
+    try {
+      const response = await fetch(`${BACKEND_URL}/api/contact`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Failed to send message");
+      }
+
+      const data = await response.json();
+      
+      toast({
+        title: "Message Sent!",
+        description: "We'll get back to you as soon as possible.",
+      });
+
+      // Reset form
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+      });
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      toast({
+        title: "Error",
+        description: error instanceof Error ? error.message : "Failed to send message. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -135,8 +165,12 @@ const Contact = () => {
                     />
                   </div>
 
-                  <Button type="submit" className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
-                    Send Message
+                  <Button 
+                    type="submit" 
+                    className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
+                    disabled={isLoading}
+                  >
+                    {isLoading ? "Sending..." : "Send Message"}
                   </Button>
                 </form>
               </div>
