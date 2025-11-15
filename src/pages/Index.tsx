@@ -5,6 +5,7 @@ import AboutSection from "@/components/AboutSection";
 import TeamSection from "@/components/TeamSection";
 import WorkSection from "@/components/WorkSection";
 import FAQSection from "@/components/FAQSection";
+import SectionDivider from "@/components/SectionDivider";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -14,9 +15,13 @@ const Index = () => {
       <Navigation />
       <main className="relative z-10">
         <HeroSection />
+        <SectionDivider variant="gradient" />
         <AboutSection />
+        <SectionDivider variant="primary" />
         <WorkSection />
+        <SectionDivider variant="secondary" />
         <TeamSection />
+        <SectionDivider variant="gradient" />
         <FAQSection />
       </main>
       <Footer />

@@ -2,6 +2,7 @@ import { Calendar, MapPin, Users, Clock, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Navigation from "@/components/Navigation";
 import GridBackground from "@/components/GridBackground";
+import SectionDivider from "@/components/SectionDivider";
 import Footer from "@/components/Footer";
 
 const Events = () => {
@@ -154,6 +155,8 @@ const Events = () => {
               ))}
             </div>
           </section>
+
+          <SectionDivider variant="gradient" />
 
           {/* Past Events */}
           <section>

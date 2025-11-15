@@ -87,6 +87,10 @@ All colors MUST be HSL.
       linear-gradient(90deg, hsl(var(--grid-color)) 1px, transparent 1px);
     background-size: 50px 50px;
   }
+
+  .bg-gradient-radial {
+    background: radial-gradient(circle, var(--tw-gradient-stops));
+  }
 }
 
 @keyframes float {
