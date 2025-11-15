@@ -10,7 +10,7 @@ const app = express();
 const port = process.env.PORT || 8080;
 const mongoURI = process.env.MONGO_URI;
 
-const FRONTEND_ORIGIN = process.env.FRONTEND_ORIGIN || 'http://localhost:5173';
+const FRONTEND_ORIGIN = process.env.FRONTEND_ORIGIN || 'http://localhost:8081';
 app.use(cors({ origin: FRONTEND_ORIGIN }));
 app.use(express.json());
 
