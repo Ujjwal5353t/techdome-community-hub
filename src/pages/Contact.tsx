@@ -8,7 +8,7 @@ import GridBackground from "@/components/GridBackground";
 import Footer from "@/components/Footer";
 import { useToast } from "@/hooks/use-toast";
 
-const BACKEND_URL = "http://localhost:8080";
+const BACKEND_URL = import.meta.env.VITE_API_URL;
 
 const Contact = () => {
   const { toast } = useToast();
