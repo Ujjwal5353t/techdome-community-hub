@@ -10,8 +10,20 @@ const app = express();
 const port = process.env.PORT || 8080;
 const mongoURI = process.env.MONGO_URI;
 
-const FRONTEND_ORIGIN = process.env.FRONTEND_ORIGIN || 'http://localhost:8081';
-app.use(cors({ origin: FRONTEND_ORIGIN }));
+const allowedOrigins = [
+  "https://techdome-official.onrender.com", // your live frontend
+  "http://localhost:5173",                 // local vite dev
+  "http://localhost:8081"
+];
+app.use(cors({
+  origin: [
+    "https://techdome-official.onrender.com",
+    "http://localhost:5173"
+  ],
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+}));
+
 app.use(express.json());
 
 if (!mongoURI) {
