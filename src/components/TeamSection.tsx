@@ -145,7 +145,7 @@ const TeamSection = () => {
     {
       id: 3,
       name: "Ujjwal Yadav",
-      role: "Events Coordinator",
+      role: "Event Coordinator",
       img: "/ujjwal.jpg",
       linkedin: "https://www.linkedin.com/m/in/-uyadav",
     },
@@ -159,7 +159,7 @@ const TeamSection = () => {
     {
       id: 5,
       name: "Vaibhav Chaturvedi",
-      role: "Event Coordinator",
+      role: "Logistics & operation",
       img: "/vaibhav.jpeg",
       linkedin: "https://www.linkedin.com/in/vaibhav-chaturvedi-5772b0333/"
     }

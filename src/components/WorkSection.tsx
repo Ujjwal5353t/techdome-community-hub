@@ -6,7 +6,7 @@ const WorkSection = () => {
     {
       title: "DarkCode rising",
       description: " 10-hour coding marathon bringing together brilliant minds.",
-      category: "Competition",
+      category: "Hackathon",
       image: "/hack-logo.png",
     },
   ];
