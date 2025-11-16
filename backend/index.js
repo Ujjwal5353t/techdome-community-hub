@@ -10,19 +10,31 @@ const app = express();
 const port = process.env.PORT || 8080;
 const mongoURI = process.env.MONGO_URI;
 
+// IMPORTANT for preflight success
+app.options("*", cors());
 const allowedOrigins = [
-  "https://techdome-official.onrender.com", // your live frontend
-  "http://localhost:5173",                 // local vite dev
-  "http://localhost:8081"
+  "https://www.techdome.online",
+  "https://techdome.online",
+  "https://techdome-official.onrender.com",
+  "http://localhost:5173"
 ];
+
 app.use(cors({
-  origin: [
-    "https://techdome-official.onrender.com",
-    "http://localhost:5173"
-  ],
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true); // allow non-browser tools
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      console.log("❌ Blocked by CORS:", origin);
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true
 }));
+
+
 
 app.use(express.json());
 
