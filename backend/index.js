@@ -10,8 +10,10 @@ const app = express();
 const port = process.env.PORT || 8080;
 const mongoURI = process.env.MONGO_URI;
 
-// IMPORTANT for preflight success
-app.options("*", cors());
+
+// IMPORTANT for preflight success (Express 5 Fix)
+app.options(/.*/, cors());
+
 const allowedOrigins = [
   "https://www.techdome.online",
   "https://techdome.online",
