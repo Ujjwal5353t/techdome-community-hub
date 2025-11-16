@@ -10,10 +10,10 @@ const app = express();
 const port = process.env.PORT || 8080;
 const mongoURI = process.env.MONGO_URI;
 
-
-// IMPORTANT for preflight success (Express 5 Fix)
+// Enable CORS FIRST (preflight)
 app.options(/.*/, cors());
 
+// CORS allowed domains
 const allowedOrigins = [
   "https://www.techdome.online",
   "https://techdome.online",
@@ -21,9 +21,10 @@ const allowedOrigins = [
   "http://localhost:5173"
 ];
 
+// Main CORS middleware
 app.use(cors({
   origin: function (origin, callback) {
-    if (!origin) return callback(null, true); // allow non-browser tools
+    if (!origin) return callback(null, true);
     if (allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
@@ -36,10 +37,15 @@ app.use(cors({
   credentials: true
 }));
 
-
-
+// JSON parser — MUST COME AFTER CORS
 app.use(express.json());
 
+// Health check route
+app.get("/", (req, res) => {
+  res.send("TechDome Backend Running");
+});
+
+// MongoDB connect
 if (!mongoURI) {
     console.warn('Warning: MONGO_URI not set in .env. Mongo connect will likely fail.');
 }
@@ -51,6 +57,7 @@ mongoose
 
 const User = require('./models/userInfo');
 
+// Contact form route
 app.post('/api/contact', async (req, res) => {
     console.log('POST /api/contact body:', req.body);
     try {
@@ -75,10 +82,8 @@ app.post('/api/contact', async (req, res) => {
     }
 });
 
+// Start server
 const httpServer = http.createServer(app);
 httpServer.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
-
-
-
