@@ -9,8 +9,8 @@ const Events = () => {
   const upcomingEvents = [
     {
       id: 1,
-      title: "DarkCode Rising - Hackathon 2024",
-      date: "January 18 , 2026",
+      title: "DarkCode Rising - Hackathon 2026",
+      date: "January 17 , 2026",
       time: "10 Hours",
       location: "TBA",
       description: "Join us for our biggest hackathon of the year! Code, collaborate, and compete for amazing prizes.",
