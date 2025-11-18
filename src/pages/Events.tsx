@@ -102,9 +102,11 @@ const Events = () => {
                       </div>
                     </div>
 
-                    <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
-                      Register Now
-                    </Button>
+                    <a href="https://darkcode-j2ec.onrender.com/" target="_blank" rel="noopener noreferrer">
+                      <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
+                        Register Now
+                      </Button>
+                    </a>
                   </div>
                 </div>
               ))}
